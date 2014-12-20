@@ -40,7 +40,7 @@ public class ApplicationServiceIntegrationTest {
 
     @Test
     public void testAddSuffixToEntitiesBeginningWithEmptyTable() {
-        service.addSuffixToEntitiesBeginningWith(" VIP", 'W');
+        service.addSuffixToEntitiesBeginningWith("_3", 'W');
 
         assertEquals(Collections.<Customer>emptyList(), repository.getEntities());
     }
@@ -49,7 +49,7 @@ public class ApplicationServiceIntegrationTest {
     public void testAddSuffixToEntitiesBeginningWithNoSuchEntities() throws IOException {
         executeScript("scripts/no_such_entities.sql");
 
-        service.addSuffixToEntitiesBeginningWith(" VIP", 'W');
+        service.addSuffixToEntitiesBeginningWith("_3", 'W');
 
         Customer[] expected = new Customer[]{new Customer(1, "Black", "Jack", "Sam", 28)};
         assertEquals(Arrays.asList(expected), repository.getEntities());
@@ -59,12 +59,12 @@ public class ApplicationServiceIntegrationTest {
     public void testAddSuffixToEntitiesBeginningWith() throws IOException {
         executeScript("scripts/insert_needed_entities.sql");
 
-        service.addSuffixToEntitiesBeginningWith(" VIP", 'W');
+        service.addSuffixToEntitiesBeginningWith("_3", 'W');
 
         Customer[] expected = new Customer[]{
-                new Customer(1, "White VIP", "Adam", "John", 30),
+                new Customer(1, "White_3", "Adam", "John", 30),
                 new Customer(2, "Black", "Jack", "Sam", 28),
-                new Customer(3, "Winter VIP", "Patric", "Nick", 31)
+                new Customer(3, "Winter_3", "Patric", "Nick", 31)
         };
         assertEquals(Arrays.asList(expected), repository.getEntities());
     }

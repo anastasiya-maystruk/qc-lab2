@@ -9,7 +9,7 @@ class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         ApplicationService service = context.getBean(ApplicationService.class);
 
-        service.addSuffixToEntitiesBeginningWith(" VIP", 'W');
+        service.addSuffixToEntitiesBeginningWith(" _3", 'W');
         service.deleteEntitiesBeginningWith('B');
     }
 }
